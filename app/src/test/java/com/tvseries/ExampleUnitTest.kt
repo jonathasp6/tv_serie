@@ -1,4 +1,4 @@
-package com.tvserie
+package com.tvseries
 
 import org.junit.Test
 
