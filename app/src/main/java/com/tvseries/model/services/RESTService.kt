@@ -6,6 +6,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.tvseries.model.Episode
 import com.tvseries.model.TvSeries
 import com.tvseries.model.IDataFactory
 import com.tvseries.model.TvSeriesSearched
@@ -95,6 +96,27 @@ class RESTService(context: Context) : IDataFactory {
         queue?.add(stringRequest)
     }
 
+    override fun getEpisodeTvSeriesById(id: Int, handler: (ArrayList<Episode>) -> Unit) {
+        val url = "https://api.tvmaze.com/shows/${id}/episodes"
 
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val episodes = json.decodeFromString<ArrayList<Episode>>(response.toString())
+                    handler(episodes)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                } catch (e: SerializationException) {
+                    e.printStackTrace()
+                }
+            },
+            {
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
+            }
+        )
+
+        queue?.add(stringRequest)
+    }
 
 }

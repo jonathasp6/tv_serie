@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.squareup.picasso.Picasso
+import com.tvseries.R
 import com.tvseries.databinding.FragmentTvSeriesBinding
 import com.tvseries.viewmodel.TvSeriesViewModel
 
@@ -22,15 +24,12 @@ class TvSeriesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             idTvSeries = it.getInt("id")
-        }
-        context?.let {
-            tvSeriesViewModel.loadTvSeries(it, idTvSeries)
+            tvSeriesViewModel.loadTvSeries(requireContext(), idTvSeries)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        // Inflate the layout for this fragment
         binding = FragmentTvSeriesBinding.inflate(inflater, container, false)
 
         tvSeriesViewModel.tvSeries.observe(viewLifecycleOwner) {
@@ -64,6 +63,7 @@ class TvSeriesFragment : Fragment() {
             val bundle = Bundle()
             bundle.putInt("id", idTvSeries)
             bundle.putString("name", name)
+            view?.findNavController()?.navigate(R.id.action_tvSeriesFragment_to_episodeFragment, bundle)
         }
 
         return binding.root

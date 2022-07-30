@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Tv Series</string>
-    <!--menu navigation bottom-->
+
     <string name="menu_1">Home</string>
     <string name="menu_2">Search</string>
+
+    <string name="header_list_series">Home</string>
+    <string name="header_search">Search</string>
+    <string name="header_information">Information</string>
+    <string name="header_episodes">Episodes</string>
 
     <string name="fragment_tv_series_loading">Loading Tv Series…</string>
 
@@ -17,6 +22,12 @@
     <string name="fragment_tv_series_information_episodes">Episodes:</string>
     <string name="fragment_tv_series_information_close">Close</string>
     <string name="fragment_tv_series_information_bt_see_episode">See Episodes</string>
+
+    <string name="fragment_episode_not_found">No episodes found!</string>
+
+    <string name="fragment_episode_summary">Summary:</string>
+    <string name="fragment_episode_number">Number:</string>
+    <string name="fragment_episode_season">Season:</string>
 
 
 </resources>

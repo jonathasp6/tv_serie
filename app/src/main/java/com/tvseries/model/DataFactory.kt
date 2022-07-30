@@ -2,8 +2,6 @@ package com.tvseries.model
 
 import android.content.Context
 import com.tvseries.model.services.RESTService
-import com.tvseries.viewmodel.TvSeriesViewModel
-import com.tvseries.viewmodel.*
 
 interface IDataFactory {
     fun getListTvSeries(page: Int, handler: (List<TvSeries>?) -> Unit)
@@ -11,6 +9,8 @@ interface IDataFactory {
     fun getTvSeriesByName(name : String, handler: (List<TvSeriesSearched>) -> Unit)
 
     fun getTvShowById(id : Int, handler: (TvSeries) -> Unit)
+
+    fun getEpisodeTvSeriesById(id: Int, handler: (ArrayList<Episode>) -> Unit)
 }
 
 class DataFactory {

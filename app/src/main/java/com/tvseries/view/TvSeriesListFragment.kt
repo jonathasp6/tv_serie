@@ -23,9 +23,7 @@ class TvSeriesListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context?.let {
-            modelFragmentList.loadTvSeries(it)
-        }
+        modelFragmentList.loadTvSeries(requireContext())
     }
 
     private val clickItem: eventClickTvSeries = { tvSeries ->

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.tvseries.view.TvSeriesListFragment"
-        android:label="@string/menu_1" >
+        android:label="@string/header_list_series">
         <action
             android:id="@+id/action_navigation_home_to_tvSeriesFragment"
             app:destination="@id/tvSeriesFragment" />
@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.tvseries.view.TvSeriesSearchFragment"
-        android:label="@string/menu_2" >
+        android:label="@string/header_search">
         <action
             android:id="@+id/action_navigation_search_to_tvSeriesFragment"
             app:destination="@id/tvSeriesFragment" />
@@ -23,5 +23,13 @@
     <fragment
         android:id="@+id/tvSeriesFragment"
         android:name="com.tvseries.view.TvSeriesFragment"
-        android:label="TvSeriesFragment" />
+        android:label="@string/header_information">
+        <action
+            android:id="@+id/action_tvSeriesFragment_to_episodeFragment"
+            app:destination="@id/episodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="com.tvseries.view.EpisodeFragment"
+        android:label="@string/header_episodes" />
 </navigation>

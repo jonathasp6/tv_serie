@@ -32,3 +32,13 @@ data class TvSeriesSearched(
     val score: Float,
     val show: TvSeries
 )
+
+@Serializable
+data class Episode(
+    val id: Int,
+    val name: String,
+    val season: Int?,
+    val number: Int?,
+    val summary: String?,
+    val image: Image?
+)
