@@ -10,5 +10,13 @@
     <string name="fragment_search_search">Search</string>
     <string name="fragment_search_not_found">No tv series found!</string>
 
+    <string name="fragment_tv_series_information_date">Schedule:</string>
+    <string name="fragment_tv_series_information_runtime">Runtime:</string>
+    <string name="fragment_tv_series_information_genres">Genres:</string>
+    <string name="fragment_tv_series_information_summary">Summary:</string>
+    <string name="fragment_tv_series_information_episodes">Episodes:</string>
+    <string name="fragment_tv_series_information_close">Close</string>
+    <string name="fragment_tv_series_information_bt_see_episode">See Episodes</string>
+
 
 </resources>

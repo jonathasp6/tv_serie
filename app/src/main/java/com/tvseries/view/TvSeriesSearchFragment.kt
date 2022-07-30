@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tvseries.R
 import com.tvseries.databinding.FragmentTvSeriesSearchBinding
@@ -81,5 +82,6 @@ class TvSeriesSearchFragment : Fragment() {
     private fun onClickListItem(tvSeriesSearched: TvSeriesSearched) {
         val bundle = Bundle()
         bundle.putInt("id", tvSeriesSearched.show.id)
+        view?.findNavController()?.navigate(R.id.action_navigation_search_to_tvSeriesFragment, bundle)
     }
 }

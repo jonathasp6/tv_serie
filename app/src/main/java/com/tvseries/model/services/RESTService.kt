@@ -9,6 +9,7 @@ import com.android.volley.toolbox.Volley
 import com.tvseries.model.TvSeries
 import com.tvseries.model.IDataFactory
 import com.tvseries.model.TvSeriesSearched
+import com.tvseries.viewmodel.TvSeriesViewModel
 import com.tvseries.viewmodel.*
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
@@ -66,7 +67,30 @@ class RESTService(context: Context) : IDataFactory {
                 }
             },
             {
-                Log.d("TvSeriesListFragment", "That didn't work! ${it.toString()}")
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
+            }
+        )
+
+        queue?.add(stringRequest)
+    }
+
+    override fun getTvShowById(model: TvSeriesViewModel, id : Int) {
+        val url = "https://api.tvmaze.com/shows/${id}"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val tvSeries = json.decodeFromString<TvSeries>(response.toString())
+                    model.postInformation(tvSeries)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                } catch (e: SerializationException) {
+                    e.printStackTrace()
+                }
+            },
+            {
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
             }
         )
 

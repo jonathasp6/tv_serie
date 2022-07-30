@@ -7,9 +7,21 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.tvseries.view.TvSeriesListFragment"
-        android:label="@string/menu_1" />
+        android:label="@string/menu_1" >
+        <action
+            android:id="@+id/action_navigation_home_to_tvSeriesFragment"
+            app:destination="@id/tvSeriesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.tvseries.view.TvSeriesSearchFragment"
-        android:label="@string/menu_2" />
+        android:label="@string/menu_2" >
+        <action
+            android:id="@+id/action_navigation_search_to_tvSeriesFragment"
+            app:destination="@id/tvSeriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvSeriesFragment"
+        android:name="com.tvseries.view.TvSeriesFragment"
+        android:label="TvSeriesFragment" />
 </navigation>
