@@ -32,7 +32,14 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
 
     fun loadTvSeries(context: Context) {
         page.postValue(0)
-        DataFactory.getInstance(context.applicationContext).getListTvSeries(this, 0)
+        DataFactory.getInstance(context.applicationContext).getListTvSeries(0) {
+            if (it != null) {
+                loadNewTvSeriesList(it)
+            }
+            else {
+                errorLoadList()
+            }
+        }
     }
 
     fun loadNextPageTvSeries(context: Context) {
@@ -40,7 +47,14 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
             canLoadPage = false
             page.value = page.value!! + 1
             loadingList.postValue(true)
-            DataFactory.getInstance(context.applicationContext).getListTvSeries(this, page.value!!)
+            DataFactory.getInstance(context.applicationContext).getListTvSeries(page.value!!) {
+                if (it != null) {
+                    loadNewTvSeriesList(it)
+                }
+                else {
+                    errorLoadList()
+                }
+            }
         }
     }
 
@@ -49,17 +63,24 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
             canLoadPage = false
             page.value = page.value!! - 1
             loadingList.postValue(true)
-            DataFactory.getInstance(context.applicationContext).getListTvSeries(this, page.value!!)
+            DataFactory.getInstance(context.applicationContext).getListTvSeries(page.value!!) {
+                if (it != null) {
+                    loadNewTvSeriesList(it)
+                }
+                else {
+                    errorLoadList()
+                }
+            }
         }
     }
 
-    fun loadNewTvSeriesList(newList: List<TvSeries>) {
+    private fun loadNewTvSeriesList(newList: List<TvSeries>) {
         tvSeries.postValue(newList)
         loadingList.postValue(false)
         canLoadPage = true
     }
 
-    fun errorLoadList() {
+    private fun errorLoadList() {
         canLoadPage = false
     }
 

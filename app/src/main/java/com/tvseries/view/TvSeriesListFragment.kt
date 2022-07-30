@@ -39,9 +39,9 @@ class TvSeriesListFragment : Fragment() {
         binding = FragmentTvSerieListBinding.inflate(inflater, container, false)
 
         val tvSeriesAdapter = TvSeriesAdapter(clickItem)
-        binding.fragmentTvSeriesListRv.layoutManager = GridLayoutManager(requireContext(), 3)
-        binding.fragmentTvSeriesListRv.adapter = tvSeriesAdapter
-        binding.fragmentTvSeriesListRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.fragmentTvSeriesRvList.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.fragmentTvSeriesRvList.adapter = tvSeriesAdapter
+        binding.fragmentTvSeriesRvList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)

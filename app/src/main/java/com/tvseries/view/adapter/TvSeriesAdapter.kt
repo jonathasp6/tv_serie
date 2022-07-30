@@ -19,8 +19,8 @@ class TvSeriesAdapter(private val onClick: eventClickTvSeries) :
 
     class TvSeriesViewHolder(itemView: View, val onClick: (TvSeries) -> Unit) :
             RecyclerView.ViewHolder(itemView) {
-        private val tvSeriesNameTV: TextView = itemView.findViewById(R.id.tv_serie_item_tv_name)
-        private val tvSeriesIV: ImageView = itemView.findViewById(R.id.tv_serie_item_iv)
+        private val tvSeriesNameTV: TextView = itemView.findViewById(R.id.tv_series_item_tv_name)
+        private val tvSeriesIV: ImageView = itemView.findViewById(R.id.tv_series_iv_item)
         private var tvSeries: TvSeries? = null
 
         init {

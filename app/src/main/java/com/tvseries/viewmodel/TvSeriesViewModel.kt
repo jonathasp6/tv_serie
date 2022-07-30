@@ -18,10 +18,12 @@ class TvSeriesViewModel : ViewModel () {
     }
 
     fun loadTvSeries(context: Context, id: Int) {
-        DataFactory.getInstance(context.applicationContext).getTvShowById(this, id)
+        DataFactory.getInstance(context.applicationContext).getTvShowById(id) {
+            postInformation(it)
+        }
     }
 
-    fun postInformation(tvSeries: TvSeries) {
+    private fun postInformation(tvSeries: TvSeries) {
         this.tvSeries.postValue(tvSeries)
     }
 }

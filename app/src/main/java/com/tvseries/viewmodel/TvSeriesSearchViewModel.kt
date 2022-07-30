@@ -12,11 +12,12 @@ class TvSeriesSearchViewModel : ViewModel () {
     }
 
     fun loadTvSeries(context: Context, name: String) {
-        DataFactory.getInstance(context.applicationContext).getTvSeriesByName(this, name)
+        DataFactory.getInstance(context.applicationContext).getTvSeriesByName(name) {
+            postTvSeries(it)
+        }
     }
 
-    fun postTvSerie(tvSeries: List<TvSeriesSearched>) {
-        this.tvSeries.postValue(tvSeries)
-
+    private fun postTvSeries(tvSeriesSearched: List<TvSeriesSearched>) {
+        this.tvSeries.postValue(tvSeriesSearched)
     }
 }

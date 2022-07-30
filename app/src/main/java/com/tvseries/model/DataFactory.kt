@@ -6,11 +6,11 @@ import com.tvseries.viewmodel.TvSeriesViewModel
 import com.tvseries.viewmodel.*
 
 interface IDataFactory {
-    fun getListTvSeries(model: TvSeriesListViewModel, page: Int)
+    fun getListTvSeries(page: Int, handler: (List<TvSeries>?) -> Unit)
 
-    fun getTvSeriesByName(model: TvSeriesSearchViewModel, name : String)
+    fun getTvSeriesByName(name : String, handler: (List<TvSeriesSearched>) -> Unit)
 
-    fun getTvShowById(model: TvSeriesViewModel, id : Int)
+    fun getTvShowById(id : Int, handler: (TvSeries) -> Unit)
 }
 
 class DataFactory {
