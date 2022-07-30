@@ -1,4 +1,4 @@
-package com.tvseries.view.util
+package com.tvseries.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +12,9 @@ import com.squareup.picasso.Picasso
 import com.tvseries.model.TvSeries
 import com.tvseries.R
 
-typealias eventClickItem = (TvSeries) -> Unit
+typealias eventClickTvSeries = (TvSeries) -> Unit
 
-
-class TvSeriesAdapter(private val onClick: eventClickItem) :
+class TvSeriesAdapter(private val onClick: eventClickTvSeries) :
         ListAdapter<TvSeries, TvSeriesAdapter.TvSeriesViewHolder>(TvSeriesDiffCallback) {
 
     class TvSeriesViewHolder(itemView: View, val onClick: (TvSeries) -> Unit) :
@@ -46,7 +45,7 @@ class TvSeriesAdapter(private val onClick: eventClickItem) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvSeriesViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.tv_serie_item, parent, false)
+                .inflate(R.layout.tv_series_item, parent, false)
         return TvSeriesViewHolder(view, onClick)
     }
 

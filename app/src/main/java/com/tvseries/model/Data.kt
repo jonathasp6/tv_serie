@@ -26,3 +26,9 @@ data class Image(
     val medium: String,
     val original: String,
 )
+
+@Serializable
+data class TvSeriesSearched(
+    val score: Float,
+    val show: TvSeries
+)

@@ -10,10 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tvseries.model.TvSeries
-import com.tvseries.view.util.TvSeriesAdapter
+import com.tvseries.view.adapter.TvSeriesAdapter
 import com.tvseries.viewmodel.TvSeriesListViewModel
 import com.tvseries.databinding.FragmentTvSerieListBinding
-import com.tvseries.view.util.eventClickItem
+import com.tvseries.view.adapter.eventClickTvSeries
 
 
 class TvSeriesListFragment : Fragment() {
@@ -27,7 +27,7 @@ class TvSeriesListFragment : Fragment() {
         }
     }
 
-    private val clickItem: eventClickItem = { tvSeries ->
+    private val clickItem: eventClickTvSeries = { tvSeries ->
         onClickListItem(tvSeries)
     }
 

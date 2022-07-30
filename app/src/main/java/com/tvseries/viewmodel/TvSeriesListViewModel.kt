@@ -32,7 +32,7 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
 
     fun loadTvSeries(context: Context) {
         page.postValue(0)
-        DataFactory.getInstance(context.applicationContext).getListTvShows(this, 0)
+        DataFactory.getInstance(context.applicationContext).getListTvSeries(this, 0)
     }
 
     fun loadNextPageTvSeries(context: Context) {
@@ -40,7 +40,7 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
             canLoadPage = false
             page.value = page.value!! + 1
             loadingList.postValue(true)
-            DataFactory.getInstance(context.applicationContext).getListTvShows(this, page.value!!)
+            DataFactory.getInstance(context.applicationContext).getListTvSeries(this, page.value!!)
         }
     }
 
@@ -49,7 +49,7 @@ class TvSeriesListViewModel : ViewModel(), GenericModel {
             canLoadPage = false
             page.value = page.value!! - 1
             loadingList.postValue(true)
-            DataFactory.getInstance(context.applicationContext).getListTvShows(this, page.value!!)
+            DataFactory.getInstance(context.applicationContext).getListTvSeries(this, page.value!!)
         }
     }
 

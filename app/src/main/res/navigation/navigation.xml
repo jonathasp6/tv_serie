@@ -2,10 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/tvSeriesListFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/tvSeriesListFragment"
+        android:id="@+id/navigation_home"
         android:name="com.tvseries.view.TvSeriesListFragment"
-        android:label="TvSeriesListFragment" />
+        android:label="@string/menu_1" />
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.tvseries.view.TvSeriesSearchFragment"
+        android:label="@string/menu_2" />
 </navigation>

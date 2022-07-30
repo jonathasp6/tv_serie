@@ -5,7 +5,9 @@ import com.tvseries.model.services.RESTService
 import com.tvseries.viewmodel.*
 
 interface IDataFactory {
-    fun getListTvShows(model: TvSeriesListViewModel, page: Int)
+    fun getListTvSeries(model: TvSeriesListViewModel, page: Int)
+
+    fun getTvSeriesByName(model: TvSeriesSearchViewModel, name : String)
 }
 
 class DataFactory {
