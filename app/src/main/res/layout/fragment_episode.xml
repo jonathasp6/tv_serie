@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.EpisodeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:id="@+id/fragment_episode_ll_detail"
         android:layout_width="match_parent"
@@ -43,13 +41,13 @@
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center"
                         android:text="@android:string/unknownName"
-                        android:textSize="24sp" />
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <ImageView
                         android:id="@+id/fragment_episode_iv_poster"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -63,7 +61,7 @@
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_number"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/fragment_episode_tv_number"
@@ -71,7 +69,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:text="@string/fragment_episode_number"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/textView12"
@@ -80,7 +79,7 @@
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_season"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/fragment_episode_tv_season"
@@ -88,7 +87,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:text="@string/fragment_episode_season"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/textView14"
@@ -97,7 +97,7 @@
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_summary"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/fragment_episode_tv_summary"
@@ -105,7 +105,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:text="@string/fragment_episode_summary"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                 </LinearLayout>
