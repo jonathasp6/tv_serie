@@ -9,4 +9,9 @@
         android:id="@+id/navigation_search"
         android:icon="@drawable/ic_search"
         android:title="@string/menu_2" />
+
+    <item
+        android:id="@+id/navigation_people"
+        android:icon="@drawable/ic_person_search"
+        android:title="@string/menu_3" />
 </menu>

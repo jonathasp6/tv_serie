@@ -120,4 +120,27 @@ class RESTService(var context: Context) : IDataFactory {
         queue?.add(stringRequest)
     }
 
+    override fun getPeopleByName(name: String, handler: (List<PeopleSearched>) -> Unit) {
+        val url = "https://api.tvmaze.com/search/people?q=$name"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val peopleSearched = json.decodeFromString<List<PeopleSearched>>(response.toString())
+                    handler(peopleSearched)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                } catch (e: SerializationException) {
+                    e.printStackTrace()
+                }
+            },
+            {
+                Log.d("TvSeriesListFragment", "That didn't work! ${it.toString()}")
+            }
+        )
+
+        queue?.add(stringRequest)
+    }
+
 }

@@ -42,4 +42,8 @@
         android:name="com.tvseries.view.EpisodeFragment"
         android:label="@string/header_episode"
         tools:layout="@layout/fragment_episode" />
+    <fragment
+        android:id="@+id/navigation_people"
+        android:name="com.tvseries.view.PeopleSearchFragment"
+        android:label="@string/header_people" />
 </navigation>

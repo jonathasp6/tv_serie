@@ -42,3 +42,18 @@ data class Episode(
     val summary: String?,
     val image: Image?
 )
+
+@Serializable
+data class Person(
+    val id: Int,
+    val name: String,
+    val url: String?,
+    val image : Image?,
+    val gender: String?,
+)
+
+@Serializable
+data class PeopleSearched(
+    val score: Float,
+    val person: Person
+)
