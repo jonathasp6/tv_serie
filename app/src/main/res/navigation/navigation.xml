@@ -45,5 +45,17 @@
     <fragment
         android:id="@+id/navigation_people"
         android:name="com.tvseries.view.PeopleSearchFragment"
-        android:label="@string/header_people" />
+        android:label="@string/header_people" >
+        <action
+            android:id="@+id/action_navigation_people_to_personFragment"
+            app:destination="@id/personFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.tvseries.view.PersonFragment"
+        android:label="@string/header_person">
+        <action
+            android:id="@+id/action_personFragment_to_tvSeriesFragment"
+            app:destination="@id/tvSeriesFragment" />
+    </fragment>
 </navigation>

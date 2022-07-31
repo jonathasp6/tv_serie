@@ -57,3 +57,13 @@ data class PeopleSearched(
     val score: Float,
     val person: Person
 )
+
+@Serializable
+data class CastCredit(
+    val _embedded: CreditEmbedded? = null
+)
+
+@Serializable
+data class CreditEmbedded(
+    val show: TvSeries
+)

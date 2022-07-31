@@ -68,7 +68,7 @@ class TvSeriesSearchFragment : Fragment() {
         job?.cancel()
         job = lifecycleScope.launch {
             withContext(Dispatchers.Main) {
-                delay(500)
+                delay(300)
                 val name = binding.fragmentTvSeriesEtName.text.toString()
                 if (name.isNotEmpty()) {
                     tvSeriesSearchViewModel.loadTvSeries(requireContext(), name)

@@ -16,6 +16,9 @@ interface IDataFactory {
 
     fun getPeopleByName(name: String, handler: (List<PeopleSearched>) -> Unit)
 
+    fun getPersonById(id : Int, handler: (Person) -> Unit)
+
+    fun getPersonCast(id: Int, handler: (List<CastCredit>) -> Unit)
 }
 
 class DataFactory {

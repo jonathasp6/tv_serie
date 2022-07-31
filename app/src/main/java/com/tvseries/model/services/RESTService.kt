@@ -136,7 +136,53 @@ class RESTService(var context: Context) : IDataFactory {
                 }
             },
             {
-                Log.d("TvSeriesListFragment", "That didn't work! ${it.toString()}")
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
+            }
+        )
+
+        queue?.add(stringRequest)
+    }
+
+    override fun getPersonById(id : Int, handler: (Person) -> Unit) {
+        val url = "https://api.tvmaze.com/people/${id}"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val person = json.decodeFromString<Person>(response.toString())
+                    handler(person)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                } catch (e: SerializationException) {
+                    e.printStackTrace()
+                }
+            },
+            {
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
+            }
+        )
+
+        queue?.add(stringRequest)
+    }
+
+    override fun getPersonCast(id : Int, handler: (List<CastCredit>) -> Unit) {
+        val url = "https://api.tvmaze.com/people/${id}/castcredits?embed=show"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url,
+            { response ->
+                try {
+                    val castCredits = json.decodeFromString<List<CastCredit>>(response.toString())
+                    handler(castCredits)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                } catch (e: SerializationException) {
+                    e.printStackTrace()
+                }
+            },
+            {
+                Log.d("TvSeriesListFragment", "That didn't work! $it")
             }
         )
 

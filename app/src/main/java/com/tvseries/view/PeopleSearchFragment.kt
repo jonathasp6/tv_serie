@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.tvseries.R
 import com.tvseries.databinding.FragmentPeopleSearchBinding
@@ -58,7 +59,6 @@ class PeopleSearchFragment : Fragment() {
         }
     }
 
-
     private val clickItem: eventClickPeople = { person ->
         onClickListItem(person)
     }
@@ -67,7 +67,7 @@ class PeopleSearchFragment : Fragment() {
         job?.cancel()
         job = lifecycleScope.launch {
             withContext(Dispatchers.Main) {
-                delay(500)
+                delay(300)
                 val name = binding.fragmentSearchPeopleEtName.text.toString()
                 if (name.isNotEmpty()) {
                     peopleSearchViewModel.loadPerson(requireContext(), name)
@@ -76,8 +76,9 @@ class PeopleSearchFragment : Fragment() {
         }
     }
 
-
     private fun onClickListItem(peopleSearched: PeopleSearched) {
-
+        val bundle = Bundle()
+        bundle.putInt("id", peopleSearched.person.id)
+        view?.findNavController()?.navigate(R.id.action_navigation_people_to_personFragment, bundle)
     }
 }

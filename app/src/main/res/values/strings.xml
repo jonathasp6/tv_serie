@@ -7,10 +7,12 @@
 
     <string name="header_list_series">Home</string>
     <string name="header_search">Search</string>
-    <string name="header_information">Information</string>
+    <string name="header_information">Tv Series Information</string>
     <string name="header_episodes">Episodes</string>
     <string name="header_episode">Episode</string>
     <string name="header_people">People</string>
+    <string name="header_person">Person Information</string>
+
 
     <string name="fragment_tv_series_loading">Loading Tv Series…</string>
 
@@ -35,4 +37,6 @@
     <string name="fragment_people_not_found">No people found!</string>
     <string name="fragment_people_type">Type a person name</string>
 
+    <string name="fragment_person_cast">Tv series:</string>
+    <string name="fragment_person_cast_not_found">No tv series found for this person!</string>
 </resources>
