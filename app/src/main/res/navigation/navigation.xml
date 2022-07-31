@@ -30,6 +30,6 @@
     </fragment>
     <fragment
         android:id="@+id/episodeFragment"
-        android:name="com.tvseries.view.EpisodeFragment"
+        android:name="com.tvseries.view.EpisodeListFragment"
         android:label="@string/header_episodes" />
 </navigation>

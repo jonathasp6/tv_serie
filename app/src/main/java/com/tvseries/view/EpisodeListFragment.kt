@@ -12,19 +12,19 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.squareup.picasso.Picasso
 import com.tvseries.R
-import com.tvseries.databinding.FragmentEpisodeBinding
+import com.tvseries.databinding.FragmentEpisodeListBinding
 import com.tvseries.model.Episode
 import com.tvseries.view.adapter.EpisodeAdapter
 import com.tvseries.view.adapter.eventClickEpisode
-import com.tvseries.viewmodel.EpisodesViewModel
+import com.tvseries.viewmodel.EpisodesViewModelList
 
-class EpisodeFragment : Fragment() {
+class EpisodeListFragment : Fragment() {
     private var idTvSeries = 0
     private var tvSeriesName = ""
-    private lateinit var binding:FragmentEpisodeBinding
+    private lateinit var binding:FragmentEpisodeListBinding
 
 
-    private val modelFragment: EpisodesViewModel by viewModels()
+    private val modelFragment: EpisodesViewModelList by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class EpisodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEpisodeBinding.inflate(inflater, container, false)
+        binding = FragmentEpisodeListBinding.inflate(inflater, container, false)
 
         val episodeAdapter = EpisodeAdapter(clickItem)
         binding.fragmentEpisodeRvListEpisode.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))

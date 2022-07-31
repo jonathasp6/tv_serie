@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.tvseries.model.DataFactory
 import com.tvseries.model.Episode
 
-class EpisodesViewModel : ViewModel () {
+class EpisodesViewModelList : ViewModel () {
     val episodes: MutableLiveData<List<Episode>> by lazy {
         MutableLiveData()
     }
