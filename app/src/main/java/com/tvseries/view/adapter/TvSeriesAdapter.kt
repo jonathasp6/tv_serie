@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.tvseries.model.TvSeries
@@ -15,7 +15,7 @@ import com.tvseries.R
 typealias eventClickTvSeries = (TvSeries) -> Unit
 
 class TvSeriesAdapter(private val onClick: eventClickTvSeries) :
-        ListAdapter<TvSeries, TvSeriesAdapter.TvSeriesViewHolder>(TvSeriesDiffCallback) {
+    PagingDataAdapter<TvSeries, TvSeriesAdapter.TvSeriesViewHolder>(TvSeriesDiffCallback) {
 
     class TvSeriesViewHolder(itemView: View, val onClick: (TvSeries) -> Unit) :
             RecyclerView.ViewHolder(itemView) {
@@ -51,7 +51,9 @@ class TvSeriesAdapter(private val onClick: eventClickTvSeries) :
 
     override fun onBindViewHolder(holder: TvSeriesViewHolder, position: Int) {
         val tvSeries = getItem(position)
-        holder.bind(tvSeries)
+        tvSeries?.let {
+            holder.bind(it)
+        }
     }
 }
 object TvSeriesDiffCallback : DiffUtil.ItemCallback<TvSeries>() {

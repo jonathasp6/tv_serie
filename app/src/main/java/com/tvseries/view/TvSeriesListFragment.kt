@@ -5,25 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.tvseries.R
 import com.tvseries.model.TvSeries
 import com.tvseries.view.adapter.TvSeriesAdapter
-import com.tvseries.viewmodel.TvSeriesListViewModel
 import com.tvseries.databinding.FragmentTvSerieListBinding
+import com.tvseries.model.DataFactory
 import com.tvseries.view.adapter.eventClickTvSeries
+import com.tvseries.viewmodel.TvSeriesListViewModel
+import com.tvseries.viewmodel.ViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class TvSeriesListFragment : Fragment() {
-    private val modelFragmentList: TvSeriesListViewModel by viewModels()
+    private lateinit var  modelFragmentList: TvSeriesListViewModel
     private lateinit var binding : FragmentTvSerieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        modelFragmentList.loadTvSeries(requireContext())
+        val viewModelFactory = ViewModelFactory(
+            DataFactory.getInstance(requireContext())
+        )
+        modelFragmentList = ViewModelProvider(this, viewModelFactory)[TvSeriesListViewModel::class.java]
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                DataFactory.getInstance(requireContext()).getListTvSeries(0)
+            }
+        }
     }
 
     private val clickItem: eventClickTvSeries = { tvSeries ->
@@ -39,29 +53,10 @@ class TvSeriesListFragment : Fragment() {
         val tvSeriesAdapter = TvSeriesAdapter(clickItem)
         binding.fragmentTvSeriesRvList.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.fragmentTvSeriesRvList.adapter = tvSeriesAdapter
-        binding.fragmentTvSeriesRvList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                if (!recyclerView.canScrollVertically(1) ) {
-                    context?.let { modelFragmentList.loadNextPageTvSeries(it) }
-                }
-
-                if (!recyclerView.canScrollVertically(-1) && newState!=RecyclerView.SCROLL_STATE_DRAGGING ) {
-                    context?.let { modelFragmentList.loadPreviousPageTvSeries(it) }
-                }
-            }
-        })
-
-        modelFragmentList.loadingList.observe(viewLifecycleOwner) {
-            binding.fragmentTvSeriesLlLoadList.visibility = if (it) View.VISIBLE else View.GONE
-        }
-
-        modelFragmentList.tvSeries.observe(viewLifecycleOwner) {
-            it.let {
-                tvSeriesAdapter.submitList(it as MutableList<TvSeries>)
-                binding.fragmentTvSeriesLlLoadList.visibility = View.GONE
+        lifecycleScope.launch {
+            modelFragmentList.flow.collectLatest { pagingData ->
+                tvSeriesAdapter.submitData(pagingData)
             }
         }
 
@@ -73,5 +68,4 @@ class TvSeriesListFragment : Fragment() {
         bundle.putInt("id", tvSeries.id)
         view?.findNavController()?.navigate(R.id.action_navigation_home_to_tvSeriesFragment, bundle)
     }
-
 }

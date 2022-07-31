@@ -11,6 +11,8 @@ interface IDataFactory {
     fun getTvShowById(id : Int, handler: (TvSeries) -> Unit)
 
     fun getEpisodeTvSeriesById(id: Int, handler: (ArrayList<Episode>) -> Unit)
+
+    suspend fun getListTvSeries(page : Int) : List<TvSeries>
 }
 
 class DataFactory {

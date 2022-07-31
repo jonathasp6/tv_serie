@@ -6,19 +6,15 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.tvseries.model.Episode
-import com.tvseries.model.TvSeries
-import com.tvseries.model.IDataFactory
-import com.tvseries.model.TvSeriesSearched
+import com.tvseries.model.*
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.json.JSONException
 
-class RESTService(context: Context) : IDataFactory {
+class RESTService(var context: Context) : IDataFactory {
 
     private val json = Json { ignoreUnknownKeys = true }
-
     private var queue : RequestQueue? = null
 
     init {
@@ -27,7 +23,6 @@ class RESTService(context: Context) : IDataFactory {
 
     override fun getListTvSeries(page : Int, handler: (List<TvSeries>?) -> Unit) {
         val url = "https://api.tvmaze.com/shows?page=$page"
-
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -50,7 +45,13 @@ class RESTService(context: Context) : IDataFactory {
         queue?.add(stringRequest)
     }
 
-    override fun getTvSeriesByName(name : String, handler: (List<TvSeriesSearched>) -> Unit) {
+    override suspend fun getListTvSeries(page: Int): List<TvSeries> {
+        val service = TvSeriesServiceGenerator.create()
+        return service.getTvSeriesByPage(page)
+    }
+
+
+    override  fun getTvSeriesByName(name : String, handler: (List<TvSeriesSearched>) -> Unit) {
         val url = "https://api.tvmaze.com/search/shows?q=$name"
 
         val stringRequest = StringRequest(
