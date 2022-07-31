@@ -8,6 +8,8 @@
     <string name="header_search">Search</string>
     <string name="header_information">Information</string>
     <string name="header_episodes">Episodes</string>
+    <string name="header_episode">Episode</string>
+
 
     <string name="fragment_tv_series_loading">Loading Tv Series…</string>
 
@@ -28,6 +30,8 @@
     <string name="fragment_episode_summary">Summary:</string>
     <string name="fragment_episode_number">Number:</string>
     <string name="fragment_episode_season">Season:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

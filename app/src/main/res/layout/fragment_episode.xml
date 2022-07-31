@@ -1,47 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tvseries.view.EpisodeListFragment">
+    tools:context=".view.EpisodeFragment">
 
-    <LinearLayout
-        android:id="@+id/fragment_episode_information_ll_episodes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_episode_rv_list_episode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="LinearLayoutManager"
-            tools:listitem="@layout/episode_item" />
-
-    </LinearLayout>
+    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:id="@+id/fragment_episode_ll_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/white"
-        android:elevation="12dp"
-        android:focusable="auto"
-        android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:visibility="gone"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +62,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_number"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                         <TextView
@@ -97,7 +70,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="@string/fragment_episode_number" />
+                            android:text="@string/fragment_episode_number"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/textView12"
@@ -105,6 +79,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_season"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                         <TextView
@@ -112,7 +87,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="@string/fragment_episode_season" />
+                            android:text="@string/fragment_episode_season"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/textView14"
@@ -120,6 +96,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-black"
                             android:text="@string/fragment_episode_summary"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                         <TextView
@@ -127,7 +104,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
-                            android:text="@string/fragment_episode_summary" />
+                            android:text="@string/fragment_episode_summary"
+                            android:textColor="@color/black" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -138,17 +116,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/fragment_episode_bt_close"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/fragment_tv_series_information_close" />
-
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

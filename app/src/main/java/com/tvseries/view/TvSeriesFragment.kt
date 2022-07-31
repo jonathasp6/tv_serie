@@ -63,7 +63,7 @@ class TvSeriesFragment : Fragment() {
             val bundle = Bundle()
             bundle.putInt("id", idTvSeries)
             bundle.putString("name", name)
-            view?.findNavController()?.navigate(R.id.action_tvSeriesFragment_to_episodeFragment, bundle)
+            view?.findNavController()?.navigate(R.id.action_tvSeriesFragment_to_episodeListFragment, bundle)
         }
 
         return binding.root

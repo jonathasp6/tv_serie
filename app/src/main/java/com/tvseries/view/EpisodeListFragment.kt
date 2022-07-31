@@ -1,16 +1,14 @@
 package com.tvseries.view
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.squareup.picasso.Picasso
 import com.tvseries.R
 import com.tvseries.databinding.FragmentEpisodeListBinding
 import com.tvseries.model.Episode
@@ -49,7 +47,6 @@ class EpisodeListFragment : Fragment() {
         val episodeAdapter = EpisodeAdapter(clickItem)
         binding.fragmentEpisodeRvListEpisode.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         binding.fragmentEpisodeRvListEpisode.adapter = episodeAdapter
-        binding.fragmentEpisodeTvTitle.text = tvSeriesName
 
         modelFragment.episodes.observe(viewLifecycleOwner) {
             episodeAdapter.submitList(it)
@@ -62,37 +59,22 @@ class EpisodeListFragment : Fragment() {
             }
         }
 
-        binding.fragmentEpisodeBtClose.setOnClickListener {
-            binding.fragmentEpisodeLlDetail.visibility = View.GONE
-        }
-
         return binding.root
     }
 
     private fun onClickListItem(episode: Episode) {
         if (episode.id != -1) {
-            binding.fragmentEpisodeTvTitle.text = episode.name
-            binding.fragmentEpisodeTvNumber.text = episode.number.toString()
-            binding.fragmentEpisodeTvSeason.text = episode.season.toString()
-
-            if (episode.summary != null) {
-                binding.fragmentEpisodeTvSummary.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Html.fromHtml(episode.summary, Html.FROM_HTML_MODE_COMPACT)
-                } else {
-                    Html.fromHtml(episode.summary)
-                }
-            }
-            else {
-                binding.fragmentEpisodeTvSummary.text = ""
+            val bundle = Bundle()
+            bundle.putString("name", episode.name)
+            bundle.putString("season", episode.season.toString())
+            bundle.putString("number", episode.number.toString())
+            bundle.putString("summary", episode.summary)
+            episode.image?.let {
+                bundle.putString("image", it.medium)
             }
 
-            episode.image?.let { image ->
-                Picasso.get()
-                    .load(image.medium)
-                    .into(binding.fragmentEpisodeIvPoster)
-            }
-
-            binding.fragmentEpisodeLlDetail.visibility = View.VISIBLE
+            view?.findNavController()
+                ?.navigate(R.id.action_episodeListFragment_to_episodeFragment, bundle)
         }
     }
 }
