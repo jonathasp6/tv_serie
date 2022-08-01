@@ -1,4 +1,4 @@
-package com.tvseries.view.adapter
+package com.tvseries.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData

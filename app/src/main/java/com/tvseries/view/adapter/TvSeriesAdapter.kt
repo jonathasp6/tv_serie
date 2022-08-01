@@ -35,10 +35,13 @@ class TvSeriesAdapter(private val onClick: eventClickTvSeries) :
             this.tvSeries = tvSeries
 
             tvSeriesNameTV.text = tvSeries.name
-            tvSeries.image?.let {
+            if (tvSeries.image != null) {
                 Picasso.get()
-                    .load(it.medium)
+                    .load(tvSeries.image .medium)
                     .into(tvSeriesIV)
+            }
+            else {
+                tvSeriesIV.setImageResource(R.drawable.ic_no_image)
             }
         }
     }

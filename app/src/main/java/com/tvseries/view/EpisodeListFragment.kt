@@ -14,7 +14,7 @@ import com.tvseries.databinding.FragmentEpisodeListBinding
 import com.tvseries.model.Episode
 import com.tvseries.view.adapter.EpisodeAdapter
 import com.tvseries.view.adapter.eventClickEpisode
-import com.tvseries.viewmodel.EpisodesViewModelList
+import com.tvseries.viewmodel.EpisodeListViewModel
 
 class EpisodeListFragment : Fragment() {
     private var idTvSeries = 0
@@ -22,7 +22,7 @@ class EpisodeListFragment : Fragment() {
     private lateinit var binding:FragmentEpisodeListBinding
 
 
-    private val modelFragment: EpisodesViewModelList by viewModels()
+    private val episodeListViewModel: EpisodeListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class EpisodeListFragment : Fragment() {
             tvSeriesName = it.getString("name").toString()
         }
 
-        modelFragment.loadEpisode(requireContext(), idTvSeries)
+        episodeListViewModel.loadEpisode(requireContext(), idTvSeries)
     }
 
     private val clickItem: eventClickEpisode = { episode ->
@@ -48,7 +48,7 @@ class EpisodeListFragment : Fragment() {
         binding.fragmentEpisodeRvListEpisode.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         binding.fragmentEpisodeRvListEpisode.adapter = episodeAdapter
 
-        modelFragment.episodes.observe(viewLifecycleOwner) {
+        episodeListViewModel.episodes.observe(viewLifecycleOwner) {
             episodeAdapter.submitList(it)
             if (it.isEmpty()) {
                 Toast.makeText(

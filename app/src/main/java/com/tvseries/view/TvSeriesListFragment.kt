@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 
 
 class TvSeriesListFragment : Fragment() {
-    private lateinit var  modelFragmentList: TvSeriesListViewModel
+    private lateinit var  tvSeriesListViewModel: TvSeriesListViewModel
     private lateinit var binding : FragmentTvSerieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class TvSeriesListFragment : Fragment() {
         val viewModelFactory = ViewModelFactory(
             DataFactory.getInstance(requireContext())
         )
-        modelFragmentList = ViewModelProvider(this, viewModelFactory)[TvSeriesListViewModel::class.java]
+        tvSeriesListViewModel = ViewModelProvider(this, viewModelFactory)[TvSeriesListViewModel::class.java]
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 DataFactory.getInstance(requireContext()).getListTvSeries(0)
@@ -55,7 +55,7 @@ class TvSeriesListFragment : Fragment() {
         binding.fragmentTvSeriesRvList.adapter = tvSeriesAdapter
 
         lifecycleScope.launch {
-            modelFragmentList.flow.collectLatest { pagingData ->
+            tvSeriesListViewModel.flow.collectLatest { pagingData ->
                 tvSeriesAdapter.submitData(pagingData)
             }
         }

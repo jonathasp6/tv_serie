@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.tvseries.R
 import com.tvseries.model.TvSeriesSearched
 
 typealias eventClickTvSeriesSearched = (TvSeriesSearched) -> Unit
@@ -34,10 +35,13 @@ class TvSeriesSearchedAdapter(private val onClick: eventClickTvSeriesSearched) :
             this.tvSeries = tvSeries
 
             tvSeriesNameTV.text = tvSeries.show.name
-            tvSeries.show.image?.let {
+            if (tvSeries.show.image != null) {
                 Picasso.get()
-                    .load(it.medium)
+                    .load(tvSeries.show.image.medium)
                     .into(tvSeriesIV)
+            }
+            else {
+                tvSeriesIV.setImageResource(R.drawable.ic_no_image)
             }
         }
     }

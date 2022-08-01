@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.tvseries.R
 import com.tvseries.model.PeopleSearched
 
 typealias eventClickPeople = (PeopleSearched) -> Unit
@@ -35,10 +36,13 @@ class PeopleSearchedAdapter(private val onClick: eventClickPeople) :
 
             name.text = people.person.name
 
-            people.person.image?.let {
+            if (people.person.image != null) {
                 Picasso.get()
-                    .load(it.medium)
+                    .load(people.person.image.medium)
                     .into(image)
+            }
+            else {
+                image.setImageResource(R.drawable.ic_no_image)
             }
         }
     }

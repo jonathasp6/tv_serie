@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.tvseries.R
 import com.tvseries.model.Episode
 
 typealias eventClickEpisode = (Episode) -> Unit
@@ -46,12 +47,15 @@ class EpisodeAdapter(private val onClick: eventClickEpisode) :
             else {
                 episodeName.setTextColor(ContextCompat.getColor(layoutItem.context, com.tvseries.R.color.black))
                 layoutItem.setBackgroundColor(ContextCompat.getColor(layoutItem.context, com.tvseries.R.color.white))
-                episode.image?.let {
+                if (episode.image != null) {
                     Picasso.get()
-                        .load(it.medium)
+                        .load(episode.image.medium)
                         .into(episodeImage)
+                    episodeImage.visibility = View.VISIBLE
                 }
-                episodeImage.visibility = View.VISIBLE
+                else {
+                    episodeImage.visibility = View.GONE
+                }
             }
         }
     }

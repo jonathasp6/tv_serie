@@ -13,12 +13,9 @@
     <string name="header_people">People</string>
     <string name="header_person">Person Information</string>
 
-
-    <string name="fragment_tv_series_loading">Loading Tv Series…</string>
-
-    <string name="fragment_search_type">Type the tv show\'s name</string>
-    <string name="fragment_search_search">Search</string>
-    <string name="fragment_search_not_found">No tv series found!</string>
+    <string name="fragment_search_type">Type the TV series\' name</string>
+    <string name="fragment_search_not_found">No TV series found.</string>
+    <string name="fragment_search_instruction">Search for TV series.</string>
 
     <string name="fragment_tv_series_information_date">Schedule:</string>
     <string name="fragment_tv_series_information_runtime">Runtime:</string>
@@ -34,9 +31,10 @@
     <string name="fragment_episode_number">Number:</string>
     <string name="fragment_episode_season">Season:</string>
 
-    <string name="fragment_people_not_found">No people found!</string>
+    <string name="fragment_people_instruction">Search for People.</string>
+    <string name="fragment_people_not_found">None found.</string>
     <string name="fragment_people_type">Type a person name</string>
 
-    <string name="fragment_person_cast">Tv series:</string>
-    <string name="fragment_person_cast_not_found">No tv series found for this person!</string>
+    <string name="fragment_person_cast">TV series:</string>
+    <string name="fragment_person_cast_not_found">No tv series found for this person.</string>
 </resources>

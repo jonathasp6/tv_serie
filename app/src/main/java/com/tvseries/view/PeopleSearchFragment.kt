@@ -39,11 +39,18 @@ class PeopleSearchFragment : Fragment() {
             it.let {
                 tvSeriesAdapter.submitList(it as MutableList<PeopleSearched>)
                 if (it.isEmpty()) {
-                    Toast.makeText(
-                        context,
-                        getText(R.string.fragment_people_not_found),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    binding.fragmentSearchPeopleTvInstruction.visibility = View.VISIBLE
+                    val name = binding.fragmentSearchPeopleEtName.text.toString()
+                    if (name.isNotEmpty()) {
+                        binding.fragmentSearchPeopleTvInstruction.text = getText(R.string.fragment_people_not_found)
+
+                    }
+                    else {
+                        binding.fragmentSearchPeopleTvInstruction.text = getText(R.string.fragment_people_instruction)
+                    }
+                }
+                else {
+                    binding.fragmentSearchPeopleTvInstruction.visibility = View.INVISIBLE
                 }
             }
         }
@@ -67,11 +74,9 @@ class PeopleSearchFragment : Fragment() {
         job?.cancel()
         job = lifecycleScope.launch {
             withContext(Dispatchers.Main) {
-                delay(300)
+                delay(250)
                 val name = binding.fragmentSearchPeopleEtName.text.toString()
-                if (name.isNotEmpty()) {
-                    peopleSearchViewModel.loadPerson(requireContext(), name)
-                }
+                peopleSearchViewModel.loadPerson(requireContext(), name)
             }
         }
     }

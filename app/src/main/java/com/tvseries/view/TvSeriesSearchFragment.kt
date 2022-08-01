@@ -45,11 +45,18 @@ class TvSeriesSearchFragment : Fragment() {
             it.let {
                 tvSeriesAdapter.submitList(it as MutableList<TvSeriesSearched>)
                 if (it.isEmpty()) {
-                    Toast.makeText(
-                        context,
-                        getText(R.string.fragment_search_not_found),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    binding.fragmentTvSeriesTvInstruction.visibility = View.VISIBLE
+                    val name = binding.fragmentTvSeriesEtName.text.toString()
+                    if (name.isEmpty()) {
+                        binding.fragmentTvSeriesTvInstruction.text = getText(R.string.fragment_search_instruction)
+                    }
+                    else {
+                        binding.fragmentTvSeriesTvInstruction.text =
+                            getText(R.string.fragment_search_not_found)
+                    }
+                }
+                else {
+                    binding.fragmentTvSeriesTvInstruction.visibility = View.INVISIBLE
                 }
             }
         }
@@ -68,11 +75,9 @@ class TvSeriesSearchFragment : Fragment() {
         job?.cancel()
         job = lifecycleScope.launch {
             withContext(Dispatchers.Main) {
-                delay(300)
+                delay(250)
                 val name = binding.fragmentTvSeriesEtName.text.toString()
-                if (name.isNotEmpty()) {
-                    tvSeriesSearchViewModel.loadTvSeries(requireContext(), name)
-                }
+                tvSeriesSearchViewModel.loadTvSeries(requireContext(), name)
             }
         }
     }

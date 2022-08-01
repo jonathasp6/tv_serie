@@ -15,12 +15,12 @@ import com.tvseries.R
 import com.tvseries.databinding.FragmentPersonBinding
 import com.tvseries.model.CastCredit
 import com.tvseries.view.adapter.CastCreditAdapter
-import com.tvseries.view.adapter.PersonViewModel
+import com.tvseries.viewmodel.PersonViewModel
 
 class PersonFragment : Fragment() {
     private var idPerson = -1
     private var name = ""
-    private val modelFragment: PersonViewModel by viewModels()
+    private val personViewModel: PersonViewModel by viewModels()
     private lateinit var binding: FragmentPersonBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class PersonFragment : Fragment() {
             idPerson = it.getInt("id")
         }
         context?.let {
-            modelFragment.loadPersonInformation(it, idPerson)
+            personViewModel.loadPersonInformation(it, idPerson)
         }
     }
 
@@ -42,7 +42,7 @@ class PersonFragment : Fragment() {
         binding.fragmentPersonRvList.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         binding.fragmentPersonRvList.adapter = castAdapter
 
-        modelFragment.castCredit.observe(viewLifecycleOwner) {
+        personViewModel.castCredit.observe(viewLifecycleOwner) {
             castAdapter.submitList(it)
             if (it.isEmpty()) {
                 Toast.makeText(
@@ -53,7 +53,7 @@ class PersonFragment : Fragment() {
             }
         }
 
-        modelFragment.person.observe(viewLifecycleOwner) {
+        personViewModel.person.observe(viewLifecycleOwner) {
             name = it.name
             binding.fragmentPersonInformationTvTitle.text = name
 
