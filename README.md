@@ -29,3 +29,4 @@ image, and series they have participated in.
 
 ## Wishlist and next steps
 * Improve pagination using Remote Mediator and Database
+* Use just Retrofit and remove Volley.
